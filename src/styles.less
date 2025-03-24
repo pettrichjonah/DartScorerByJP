@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+@border-radius: 7px;
+@background-color: #17181a;
+@font-primary-color: #35373c;
+@font-secondary-color: #eaeced;
+@button-primary-color: #35373c;
+@button-secondary-color: #555555;
+@primary-accent-color: #97b3ae;
+@red: #DC4C64;
+
+@navbar-height: 80px;
+
+@font-face {
+	font-family: 'mainFont';
+	src: url('assets/fonts/font.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: mainFont;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #17181a;
+}
+
+button {
+	cursor: pointer;
+	transition: 0.2s;
+	border-style: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+	outline: none;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	&:focus:not(:focus-visible) {
+		opacity: 1;
+	}
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+	border-radius: @border-radius !important;
+	background-color: @background-color;
+}
+

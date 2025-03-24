@@ -1,0 +1,7 @@
+<nav>
+	<p id="navtitle" (click)="router.navigate(['/'])">DartScorer</p>
+	@if (gameService.currentGame) {
+		<p id="game-info">{{ gameService.currentGame.gameMode }} - To: {{ gameService.currentGame.startingScore }} {{ gameService.currentGame.isElimination ? ' - Elimination Mode' : '' }}
+		</p>
+	}
+</nav>

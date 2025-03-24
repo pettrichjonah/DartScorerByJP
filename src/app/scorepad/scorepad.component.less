@@ -1,0 +1,137 @@
+@import "../../styles.less";
+
+:host {
+	width: 450px;
+	height: 80%;
+	box-shadow: 20px solid black;
+
+	#recentshotsrow {
+		width: 100%;
+		height: 10%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+
+		p {
+			font-size: 4vh;
+			color: @font-secondary-color;
+		}
+
+		.lighterscore {
+			opacity: 0.3;
+		}
+	}
+
+	.scorepadrow {
+		width: 100%;
+		height: 15%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+
+		button {
+			flex: 1;
+			background-color: @button-primary-color;
+			border-style: none;
+			color: @font-secondary-color;
+			font-size: 30px;
+		}
+			
+		.button-back {
+			color: @font-primary-color;
+			background-color: @red;
+		}
+		.button-multiplicator {
+			width: 50%;
+			color: @background-color;
+			background-color: @primary-accent-color;
+		}
+		.button-special-score {
+			background-color: @button-secondary-color;
+		}
+		.button--left-upper-corner {
+			border-top-left-radius: @border-radius;
+		}
+		.button--right-upper-corner {
+			border-top-right-radius: @border-radius;
+		}
+		.button--left-bottom-corner {
+			border-bottom-left-radius: @border-radius;
+		}
+		.button--right-bottom-corner {
+			border-bottom-right-radius: @border-radius;
+		}
+
+
+		.activeX2, .activeX3 {
+			color: @primary-accent-color;
+			background-color: @button-secondary-color;
+		}
+	}	
+
+	#next-player-button {
+		width: 100%;
+		height: 60%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: @font-primary-color;
+		background-color: @primary-accent-color;
+		font-size: 50px;
+		border-top-left-radius: @border-radius;
+		border-top-right-radius: @border-radius;
+
+		#last-turn-result {
+			font-size: 10vh;
+			color: @font-primary-color;
+			text-overflow: ellipsis;
+		}
+		
+		#next-player-label {
+			font-size: 5vh;
+			color: @font-primary-color;
+			text-overflow: ellipsis;
+		}
+	}
+
+	#undo-shot-big-button {
+		width: 100%;
+		height: 30%;
+		color: @font-primary-color;
+		background-color: @red;
+		font-size: 50px;
+		border-bottom-left-radius: @border-radius;
+		border-bottom-right-radius: @border-radius;
+	}
+}
+
+@media (orientation: portrait) {
+	:host {
+		width: 100%;
+		height: 70%;
+	}
+
+	.button--left-upper-corner {
+		border-top-left-radius: 0 !important;
+	}
+	.button--right-upper-corner {
+		border-top-right-radius: 0 !important;
+	}
+	.button--left-bottom-corner {
+		border-bottom-left-radius: 0 !important;
+	}
+	.button--right-bottom-corner {
+		border-bottom-right-radius: 0 !important;
+	}
+
+	#next-player-button {
+		border-top-left-radius: 0 !important;
+		border-top-right-radius: 0 !important;
+	}
+
+	#undo-shot-big-button {
+		border-bottom-left-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	}
+}

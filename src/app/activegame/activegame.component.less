@@ -1,0 +1,16 @@
+@import "../../styles.less";
+
+main {
+	width: 100%;
+	height: calc(100vh - @navbar-height);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+@media (orientation: portrait) {
+	main {
+		flex-direction: column;
+	}
+}

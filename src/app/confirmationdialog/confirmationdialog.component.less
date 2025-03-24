@@ -1,0 +1,39 @@
+@import "../../styles.less";
+
+:host {
+	width: 100%;
+	height: 100%;
+	box-shadow: 20px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	h1 {
+		padding: 10px;
+		color: @font-secondary-color;
+	}
+
+	p {
+		padding: 20px;
+		color: @font-secondary-color;
+	}
+
+	.control-bar {
+		width: 100%;
+		height: 30%;
+
+		button {
+			width: 50%;
+			height: 100%;
+			font-size: 30px;
+		}
+
+		.button-cancel {
+			background-color: @primary-accent-color;
+		}
+
+		.button-confirm {
+			background-color: @red;
+		}
+	}
+}

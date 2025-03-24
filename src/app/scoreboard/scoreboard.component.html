@@ -1,0 +1,8 @@
+@for (player of gameService.currentGame?.players; track $index) {
+	<div class="player-card" [class.active]="player.id===gameService.activePlayerId">
+		<p class="player-card__score" [class.active]="player.id===gameService.activePlayerId">{{player.score}}</p>
+		<p class="player-card__average" [class.active]="player.id===gameService.activePlayerId">{{player.average}}</p>	
+		<p class="player-card__average" [class.active]="player.id===gameService.activePlayerId">{{player.shotDartsCount}}</p>	
+		<p class="player-card__name" [class.active]="player.id===gameService.activePlayerId">{{player.name}}</p>
+	</div>
+}

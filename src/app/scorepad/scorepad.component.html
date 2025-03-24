@@ -1,0 +1,54 @@
+<div id='recentshotsrow'>
+	<p [class.lighterscore]="!gameService.shotScores[0]">{{(gameService.shotScores[0] | recentShots) ?? "1st"}}</p>
+	<p [class.lighterscore]="!gameService.shotScores[1]">{{(gameService.shotScores[1] | recentShots) ?? "2nd"}}</p>
+	<p [class.lighterscore]="!gameService.shotScores[2]">{{(gameService.shotScores[2] | recentShots) ?? "3rd"}}</p>
+</div>
+@if (gameService.shotScores.length != 3 && !this.gameService.nextPlayerIsActivated) {
+	<div class='scorepadrow'>
+		<button class="button--left-upper-corner" (click)="handleShot(1)">{{ getButtonLabel(1) }}</button>
+		<button (click)="handleShot(2)">{{ getButtonLabel(2) }}</button>
+		<button (click)="handleShot(3)">{{ getButtonLabel(3) }}</button>
+		<button (click)="handleShot(4)">{{ getButtonLabel(4) }}</button>
+		<button class="button-back button--right-upper-corner" (click)="gameService.undoShot()"><</button>
+	</div>
+	<div class='scorepadrow'>
+		<button (click)="handleShot(5)">{{ getButtonLabel(5) }}</button>
+		<button (click)="handleShot(6)">{{ getButtonLabel(6) }}</button>
+		<button (click)="handleShot(7)">{{ getButtonLabel(7) }}</button>
+		<button (click)="handleShot(8)">{{ getButtonLabel(8) }}</button>
+		<button class="button-back" (click)="gameService.undoShot()"><</button>
+	</div>
+	<div class='scorepadrow'>
+		<button (click)="handleShot(9)">{{ getButtonLabel(9) }}</button>
+		<button (click)="handleShot(10)">{{ getButtonLabel(10) }}</button>
+		<button (click)="handleShot(11)">{{ getButtonLabel(11) }}</button>
+		<button (click)="handleShot(12)">{{ getButtonLabel(12) }}</button>
+		<button class="button-special-score" (click)="handleShot(0)">0</button>
+	</div>
+	<div class='scorepadrow'>
+		<button (click)="handleShot(13)">{{ getButtonLabel(13) }}</button>
+		<button (click)="handleShot(14)">{{ getButtonLabel(14) }}</button>
+		<button (click)="handleShot(15)">{{ getButtonLabel(15) }}</button>
+		<button (click)="handleShot(16)">{{ getButtonLabel(16) }}</button>
+		<button class="button-special-score" (click)="handleShot(25)">25</button>
+	</div>
+	<div class='scorepadrow'>
+		<button (click)="handleShot(17)">{{ getButtonLabel(17) }}</button>
+		<button (click)="handleShot(18)">{{ getButtonLabel(18) }}</button>
+		<button (click)="handleShot(19)">{{ getButtonLabel(19) }}</button>
+		<button (click)="handleShot(20)">{{ getButtonLabel(20) }}</button>
+		<button class="button-special-score" (click)="handleShot(50)">50</button>
+	</div>  
+	<div class='scorepadrow'>
+		<button class="button-multiplicator button--left-bottom-corner" [class.activeX2]="this.currentMultiplicator===2" (click)="setMultiplicator(Multiplicator.Double)">x2</button>
+		<button class="button-multiplicator button--right-bottom-corner" [class.activeX3]="this.currentMultiplicator===3" (click)="setMultiplicator(Multiplicator.Triple)">x3</button>
+	</div>	
+}
+@else {
+	<button id="next-player-button" (click)="clickNextPlayerButton()">
+		<span id="last-turn-result">{{gameService.lastTurnResult}}</span>
+		<br><br>
+		<span id="next-player-label">Next player ></span>
+	</button>
+	<button id="undo-shot-big-button" (click)="gameService.undoShot()">Back</button>
+}

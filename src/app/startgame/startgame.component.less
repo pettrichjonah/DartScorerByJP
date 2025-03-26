@@ -56,7 +56,13 @@ main {
 		}
 
 		.selected-multioption {
-			border: 5px solid @primary-accent-color;
+			transition: 0.2s;
+			background-color: @primary-accent-color !important;
+
+			label {
+				transition: 0.2s;
+				color: @font-primary-color !important;
+			}
 		}
 
 		.switch {
@@ -146,19 +152,30 @@ main {
 
 @media (orientation: portrait) {
 	main {
+		justify-content: space-between;
+
 		h3 {
-			align-self: center;
+			font-size: 3vh;
+			text-align: center;
+			margin-top: 20px;
 		}
 
 		form {
-			height: 80%;
+			height: 50%;
 			flex-direction: column;
+			align-items: center;
+			align-self: end;
+			margin-top: auto;
 
 			.select-group {
+				height: 37%;
+				width: 93%;
 				flex-direction: row;
+				gap: 0.7rem;
 
 				.selection-control {
 					width: 50%;
+					height: 100%;
 					justify-content: center;
 					align-items: center;
 
@@ -166,7 +183,17 @@ main {
 						font-size: 20px;
 					}
 				}
-			}	
+
+				p {
+					font-size: 25px;
+				}
+			}
+
+			.select-group-elimination {
+				height: 10%;
+				display: flex;
+				justify-content: space-between;
+			}
 		}
 
 		button {

@@ -8,11 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class GameService {
-  // Remove this after debugging
-  public playerList: Player[] = [ { id: 0, name: "JP", score: 60, average: 0, shotDartsCount: 0 }, { id: 1, name: "Bot", score: 60, average: 0, shotDartsCount: 0 }];
-
-  public currentGame: Game | undefined = { gameMode: GameMode.DoubleOut, players: this.playerList, startingScore: StartingScore.Short, isElimination: false};
-  
+  public currentGame: Game | undefined = undefined;
   public shotScores: Shot[] = [];
   public activePlayerId: number = 0;
   public nextPlayerIsActivated = false;
@@ -37,7 +33,7 @@ export class GameService {
     if( this.checkIfNoScore(shot) || this.shotScores.length >= 3)
       this.nextPlayerIsActivated = true; 
 
-    this.playerList[this.activePlayerId].shotDartsCount += 1;
+    this.currentGame.players[this.activePlayerId].shotDartsCount += 1;
   }
 
   public undoShot() {
@@ -60,7 +56,7 @@ export class GameService {
       this.lastTurnResult = "Anything";
     }
 
-    this.playerList[this.activePlayerId].shotDartsCount -= 1;
+    this.currentGame.players[this.activePlayerId].shotDartsCount -= 1;
 
     this.nextPlayerIsActivated = false;
   }
@@ -160,9 +156,12 @@ export class GameService {
   }
 
   private calculateAndSetAverage() {
-    const currentPlayer = this.playerList[this.activePlayerId];
-    const threeDartAverage = (60 - currentPlayer.score) / (currentPlayer.shotDartsCount / 3);
+    if (!this.currentGame)
+      return;
 
-    this.playerList[this.activePlayerId].average = Math.ceil(threeDartAverage);
+    const currentPlayer = this.currentGame.players[this.activePlayerId];
+    const threeDartAverage = (this.currentGame.startingScore - currentPlayer.score) / (currentPlayer.shotDartsCount) * 3;
+
+    this.currentGame.players[this.activePlayerId].average = Math.ceil(threeDartAverage);
   }
 }

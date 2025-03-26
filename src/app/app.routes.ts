@@ -7,7 +7,7 @@ import { NavigationGuardService } from './navigationguard.service';
 
 export const routes: Routes = [ 
 	{ path: '', component: HomeComponent },
-	{ path: 'gameon', component: StartgameComponent},
-	{ path: 'play', component: ActivegameComponent, canDeactivate: [NavigationGuardService] },
+	{ path: 'gameon', component: StartgameComponent },
+	{ path: 'play', component: ActivegameComponent, canDeactivate: [NavigationGuardService], canActivate: [NavigationGuardService] },
 	{ path: 'wehaveawinner', component: GamefinishedComponent } 
 ];

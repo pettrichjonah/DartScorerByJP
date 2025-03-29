@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './startgame.component.less'
 })
 export class StartgameComponent {
-  constructor(private router: Router, public gameService: GameService) { } 
+  constructor(public gameService: GameService) { } 
 
   public selectedGameMode: GameMode | null = null;
   public selectedStartingScore: StartingScore | null = null;
@@ -24,11 +24,12 @@ export class StartgameComponent {
   public gameModeOptions: GameMode[] = [ GameMode.SingleOut, GameMode.DoubleOut ];
   public startingScoreOptions: StartingScore[] = [ StartingScore.Short, StartingScore.Medium, StartingScore.Long ];
 
-  public playerList: Player[] = [ { id: 0, name: "JP", score: this.selectedStartingScore ?? StartingScore.Short, average: 0, shotDartsCount: 0 }, { id: 1, name: "Bot", score: this.selectedStartingScore ?? StartingScore.Short, average: 0, shotDartsCount: 0 }];
+  public playerList: Player[] = [];
 
   public startGame() {
     const game: Game = { gameMode: this.selectedGameMode!, players: this.playerList, startingScore: this.selectedStartingScore ?? StartingScore.Short, isElimination: this.isElimination };
 
+    game.players.forEach(player => player.score = this.selectedStartingScore!);
     this.gameService.newGame(game);
   }
 
@@ -36,8 +37,22 @@ export class StartgameComponent {
     this.selectedGameMode = gameModeToSet
   }
 
-  public setStartingScore(StartingScoreToSet: StartingScore) {
-    this.selectedStartingScore = StartingScoreToSet
+  public setStartingScore(startingScoreToSet: StartingScore) {
+    this.selectedStartingScore = startingScoreToSet
+  }
+
+  public addPlayer(name: string, inputElement: HTMLInputElement) {
+    let newPlayer: Player = { id: this.playerList.length, name: name, score: 0, average: 0, shotDartsCount: 0 };
+    this.playerList.push(newPlayer);
+    inputElement.value = '';
+  }
+
+  public removePlayer(name: string) {
+    const index = this.playerList.findIndex(player => player.name === name);
+
+    if (index !== -1) {
+      this.playerList.splice(index, 1);
+    }  
   }
 
 }

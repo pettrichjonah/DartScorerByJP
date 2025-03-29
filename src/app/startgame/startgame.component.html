@@ -1,6 +1,17 @@
 <main>
-	<h3>Choose how you want to play</h3>
-	<form (ngSubmit)="startGame()">
+	<form>
+		<div class="player-area">
+			@for (player of playerList; track $index) {
+				<div class="added-player">
+					<p>{{ player.name }}</p>
+					<button (click)="removePlayer(player.name)"><span class="material-icons">delete</span></button>
+				</div>
+			}
+			<div id="player-input">
+				<input #playerName type="text" placeholder="Enter player name" (keydown.enter)="addPlayerButton.click()">
+				<button #addPlayerButton (click)="addPlayer(playerName.value, playerName)"><span class="material-icons">add</span></button>
+			</div>
+		</div>
 		<div class="select-group">
 			@for (gameModeOption of gameModeOptions; track $index) {
 				<div class="selection-control" [class.selected-multioption]="selectedGameMode===gameModeOption" (click)="setGameMode(gameModeOption)">
@@ -23,5 +34,5 @@
 			</label>
 		</div>
 	</form>
-	<button (click)="startGame()" [disabled]="!selectedGameMode || !selectedStartingScore">Game On!</button>
+	<button (click)="startGame()" [disabled]="!selectedGameMode || !selectedStartingScore || playerList.length === 0">Game On!</button>
 </main>

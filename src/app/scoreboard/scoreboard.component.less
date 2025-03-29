@@ -10,8 +10,8 @@
 	gap: 3vh;
 
 	.player-card {
-		width: 15vh;
-		height: 15vh;
+		flex: 1 1 calc(100% / var(--item-count, 2)); /* Auto size */
+		max-width: calc(100% / var(--item-count, 2)); /* Prevent overflow */		height: 18vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -48,7 +48,6 @@
 		gap: 0 !important;
 
 		.player-card {
-			width: 50%;
 			height: 70%;
 			border-radius: 0;
 		}
